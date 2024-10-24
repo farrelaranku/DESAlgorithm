@@ -8,7 +8,6 @@ def hex2bin(s):
 def bin2hex(s):
 	return hex(int(s, 2))[2:].upper().zfill(len(s) // 4)
 
-
 def bin2dec(binary):
 	return int(str(binary), 2)
 
@@ -41,7 +40,8 @@ initial_perm = [58, 50, 42, 34, 26, 18, 10, 2,
 				63, 55, 47, 39, 31, 23, 15, 7]
 
 
-exp_d = [32, 1, 2, 3, 4, 5, 4, 5,
+exp_d = [
+		32, 1, 2, 3, 4, 5, 4, 5,
 		6, 7, 8, 9, 8, 9, 10, 11,
 		12, 13, 12, 13, 14, 15, 16, 17,
 		16, 17, 18, 19, 20, 21, 20, 21,
@@ -119,11 +119,7 @@ def decrypt(pt, rkb):
 	for i in range(0, 16):
 		
 		right_expanded = permute(right, exp_d, 48)
-
-		
 		xor_x = xor(right_expanded, rkb[i])
-
-
 		sbox_str = ""
 		for j in range(0, 8):
 			row = bin2dec(int(xor_x[j * 6] + xor_x[j * 6 + 5]))
